@@ -4,8 +4,8 @@ require 'httparty'
 
 # Class LLMClient provides http requests to client
 class LLMClient
-  API_URL = ENV['GROQ_API_URL']
-  API_KEY = ENV['GROQ_API_KEY']
+  API_URL = ENV.fetch('GROQ_API_URL', nil)
+  API_KEY = ENV.fetch('GROQ_API_KEY', nil)
 
   def generate_recipe(ingredients)
     prompt = "Create a step-by-step recipe using these ingredients: #{ingredients.join(', ')}."
