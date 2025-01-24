@@ -2,7 +2,7 @@
 
 # Class SeekingAlphaRecipe provide entry level app
 class SeekingAlphaRecipe < Sinatra::Application
-  use Rack::Session::EncryptedCookie
+  use Rack::Session::EncryptedCookie, secret: ENV['SECRET']
 
   set :app_file, __FILE__
   set :server, :puma
