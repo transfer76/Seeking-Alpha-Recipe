@@ -13,11 +13,26 @@ class LLMClient
       API_URL,
       headers: { 'Authorization' => "Bearer #{API_KEY}", 'Content-Type' => 'application/json' },
       body: {
-        model: 'claude-1',
-        prompt:,
+        input: prompt,
         max_tokens: 500
       }.to_json
     )
-    response.parsed_response['completion']
+    response.code == 200 ? response.parsed_response['output'] : 'Somthing went wrong'
+  end
+
+  def validate_recipe(recipe)
+    prompt = "Does this text describe a valid recipe? Respond with 'yes' or 'no': #{recipe}"
+    response = HTTParty.post(
+      API_URL,
+      headers: {
+        'Authorization' => "Bearer #{API_KEY}",
+        'Content-Type' => 'application/json'
+      },
+      body: {
+        input: prompt,
+        max_tokens: 50
+      }.to_json
+    )
+    response.code == 200 ? response.parsed_response['output'] : 'Somthing went wrong'
   end
 end
