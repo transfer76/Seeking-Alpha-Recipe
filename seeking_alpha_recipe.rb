@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
+# Class SeekingAlphaRecipe provide entry level app
 class SeekingAlphaRecipe < Sinatra::Application
   use Rack::Session::EncryptedCookie
 
   set :app_file, __FILE__
   set :server, :puma
-  set :views, Proc.new { File.join(root, "app/views") }
+  set :views, proc { File.join(root, 'app/views') }
   set :assets, Sprockets::Environment.new
-  set :assets_manifest, %w(app.js app.css)
+  set :assets_manifest, %w[app.js app.css]
   use Rack::Csrf, raise: true
 
   configure do

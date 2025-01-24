@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 environment 'production'
 bind 'unix:///path/to/shared/tmp/sockets/puma.sock'
 pidfile '/path/to/shared/tmp/pids/puma.pid'
