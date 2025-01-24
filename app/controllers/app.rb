@@ -9,7 +9,12 @@ set :public_folder, 'public'
 
 LLM_CLIENT = LLMClient.new
 
+get '/' do
+  send_file File.join(settings.public_folder, 'index.html')
+end
+
 post '/generate_recipe' do
+  puts "Ingredients received: #{params[:ingredients]}"
   ingredients = params[:ingredients]
   halt 400, json({ error: 'Ingredients are required' }) if ingredients.nil? || ingredients.empty?
 
