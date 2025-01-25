@@ -14,8 +14,8 @@ get '/' do
 end
 
 post '/generate_recipe' do
-  puts "Ingredients received: #{params[:ingredients]}"
-  ingredients = params[:ingredients]
+  request_payload = JSON.parse(request.body.read)
+  ingredients = request_payload['ingredients'].split
   halt 400, json({ error: 'Ingredients are required' }) if ingredients.nil? || ingredients.empty?
 
   recipe = LLM_CLIENT.generate_recipe(ingredients)
@@ -28,7 +28,8 @@ post '/generate_recipe' do
 end
 
 post '/validate_recipe' do
-  recipe = params[:recipe]
+  request_payload = JSON.parse(request.body.read)
+  recipe = request_payload['recipe']
   halt 400, json({ error: 'Recipe is required' }) if recipe.nil? || recipe.empty?
 
   validation = LLM_CLIENT.validate_recipe(recipe)

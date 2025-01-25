@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'httparty'
+require 'pry'
 
 # Class LLMClient provides http requests to client
 class LLMClient
@@ -8,16 +9,12 @@ class LLMClient
   API_KEY = ENV.fetch('GROQ_API_KEY', nil)
 
   def generate_recipe(ingredients)
-    prompt = "Create a step-by-step recipe using these ingredients: #{ingredients.join(', ')}."
     response = HTTParty.post(
       API_URL,
       headers: { 'Authorization' => "Bearer #{API_KEY}", 'Content-Type' => 'application/json' },
-      body: {
-        input: prompt,
-        max_tokens: 500
-      }.to_json
+      body: { ingredients: }.to_json
     )
-    response.code == 200 ? response.parsed_response['output'] : 'Somthing went wrong'
+    response.code == 200 ? response.parsed_response['output'] : response['error']['message']
   end
 
   def validate_recipe(recipe)
