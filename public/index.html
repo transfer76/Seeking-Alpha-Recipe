@@ -8,14 +8,14 @@
 </head>
 <body>
   <h1>Recipe Generator</h1>
-  <form id="recipe-form">
+  <form id="ingredients-form">
     <textarea id="ingredients" placeholder="Enter ingredients separated by witespace"></textarea>
     <button type="submit">Generate Recipe</button>
   </form>
   <div id="recipe-output"></div>
 
   <script>
-    document.getElementById('recipe-form').addEventListener('submit', async (event) => {
+    document.getElementById('ingredients-form').addEventListener('submit', async (event) => {
       event.preventDefault();
       const ingredients = document.getElementById('ingredients').value;
       const response = await fetch('/generate_recipe', {
@@ -46,7 +46,7 @@
         body: JSON.stringify({ recipe })
       });
       const data = await response.json();
-      document.getElementById('result').innerHTML = data.recipe || data.error;
+      document.getElementById('result').innerHTML = data.validation || data.error;
     });
   </script>
 </body>

@@ -15,7 +15,7 @@ end
 
 post '/generate_recipe' do
   request_payload = JSON.parse(request.body.read)
-  ingredients = request_payload['ingredients'].split
+  ingredients = request_payload['ingredients']
   halt 400, json({ error: 'Ingredients are required' }) if ingredients.nil? || ingredients.empty?
 
   recipe = LLM_CLIENT.generate_recipe(ingredients)
