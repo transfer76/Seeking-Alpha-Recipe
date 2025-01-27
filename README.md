@@ -1,4 +1,5 @@
 # Seeking Alpha Recipe
+![screenshot](evidence.png)
 
 ## Recipe Generator Web Application
 
