@@ -5,17 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('.ruby-version').strip
 
-gem 'encrypted_cookie', '0.1.0'
 gem 'httparty', '~> 0.13.7'
-gem 'puma', '~> 5.6'
-gem 'rack_csrf', '~> 2.6', require: 'rack/csrf'
-gem 'sass', '~> 3.7', require: false
-gem 'sassc', '~> 2.4', require: false
+gem 'json', '~> 1.8'
 gem 'sinatra', '~> 2.2'
 gem 'sinatra-contrib', '~> 2.2', require: false
-gem 'sprockets', '~> 4.0'
-gem 'tux', '~> 0.3', require: false
-gem 'uglifier', '~> 4.2', require: false
 
 group :development, :test do
   gem 'dotenv', '~> 3.1', '>= 3.1.7'
