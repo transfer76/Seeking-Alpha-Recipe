@@ -10,6 +10,8 @@ gem 'httparty', '~> 0.13.7'
 gem 'json', '~> 1.8'
 gem 'sinatra', '~> 2.2'
 gem 'sinatra-contrib', '~> 2.2', require: false
+gem 'webrick'
+gem 'csv'
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
