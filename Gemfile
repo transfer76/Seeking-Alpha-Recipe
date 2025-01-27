@@ -5,13 +5,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('.ruby-version').strip
 
+gem 'dotenv', '~> 3.1', '>= 3.1.7'
 gem 'httparty', '~> 0.13.7'
 gem 'json', '~> 1.8'
 gem 'sinatra', '~> 2.2'
 gem 'sinatra-contrib', '~> 2.2', require: false
 
 group :development, :test do
-  gem 'dotenv', '~> 3.1', '>= 3.1.7'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'ffaker', '~> 2.21'
   gem 'pry', '~> 0.14'
